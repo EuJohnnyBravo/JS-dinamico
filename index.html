@@ -1,13 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
+    <script type="module" src="/src/main.ts" defer></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <header></header>
+    <div>
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome" />
+      <br />
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" />
+      <br />
+      <label for="idade">Idade</label>
+      <input type="number" name="idade" id="idade" />
+      <br />
+      <label for="cpf">CPF</label>
+      <input type="text" name="cpf" id="cpf" />
+      <br />
+      <button type="button">Enviar</button>
+    </div>
+    <div>
+      <p id="dados"></p>
+    </div>
   </body>
 </html>
