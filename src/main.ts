@@ -1,4 +1,4 @@
-const lampadas = ["./desligada.jpg", "./ligada.jpg", "./quebrada.jpg"];
+const lampadas = ["./desligada.png", "./ligada.png", "./quebrada.png"];
 const OnOff = ["./Off.png", "./On.png"];
 
 const imagemLampada = document.querySelector<HTMLImageElement>("#lamp");
@@ -8,7 +8,7 @@ let lampadaQuebrada: boolean = false;
 let ligada: boolean = false;
 
 function vaiQuebrar(): boolean {
-  return Math.random() <= 0.05;
+  return Math.random() <= 0.1;
 }
 
 function ligaDesliga(isLigada: boolean): boolean {
@@ -30,11 +30,14 @@ if (interruptor && imagemLampada && imagemSwitch) {
       if (ligada) {
         imagemLampada.src = lampadas[1];
         imagemSwitch.src = OnOff[1];
+        imagemLampada.classList.add("ligada");
       } else {
         imagemLampada.src = lampadas[0];
         imagemSwitch.src = OnOff[0];
+        imagemLampada.classList.remove("ligada");
       }
     } else {
+      imagemLampada.classList.remove("ligada");
       imagemLampada.src = lampadas[2];
     }
   });
