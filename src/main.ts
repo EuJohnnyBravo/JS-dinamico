@@ -29,11 +29,9 @@ if (interruptor && imagemLampada && imagemSwitch) {
       lampadaQuebrada = vaiQuebrar();
       if (ligada) {
         imagemLampada.src = lampadas[1];
-        imagemSwitch.src = OnOff[1];
         imagemLampada.classList.add("ligada");
       } else {
         imagemLampada.src = lampadas[0];
-        imagemSwitch.src = OnOff[0];
         imagemLampada.classList.remove("ligada");
       }
     } else {
