@@ -23,6 +23,7 @@ function ligaDesliga(isLigada: boolean): boolean {
 if (interruptor && imagemLampada && imagemSwitch) {
   imagemLampada.src = lampadas[0];
   imagemSwitch.src = OnOff[0];
+
   interruptor.addEventListener("click", () => {
     ligada = ligaDesliga(ligada);
     if (!lampadaQuebrada) {
@@ -39,6 +40,7 @@ if (interruptor && imagemLampada && imagemSwitch) {
       imagemLampada.src = lampadas[2];
     }
   });
+
   interruptor.addEventListener("click", () => {
     if (ligada) {
       imagemSwitch.src = OnOff[1];
