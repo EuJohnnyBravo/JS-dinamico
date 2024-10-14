@@ -1,13 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <form action="">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" />
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" />
+      <label for="birthday">Nascimento:</label>
+      <input type="date" id="birthday" name="birthday" />
+      <label for="cep">CEP:</label>
+      <input type="text" id="cep" name="cep" />
+      <label for="address">Rua:</label>
+      <input type="text" id="address" name="address" />
+      <label for="city">Cidade: </label>
+      <input type="text" id="city" name="city" />
+      <label for="estate">Estado: </label>
+      <input type="text" id="estate" name="estate" />
+      <label for="number">Número: </label>
+      <input type="text" id="number" name="number" />
+      <button type="button">Enviar</button>
+    </form>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

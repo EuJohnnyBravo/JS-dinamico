@@ -1,24 +1,81 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+const name = document.querySelector<HTMLInputElement>("#name");
+const email = document.querySelector<HTMLInputElement>("#email");
+const birthday = document.querySelector<HTMLInputElement>("#birthday");
+const cep = document.querySelector<HTMLInputElement>("#cep");
+const address = document.querySelector<HTMLInputElement>("#address");
+const city = document.querySelector<HTMLInputElement>("#city");
+const estate = document.querySelector<HTMLInputElement>("#estate");
+const num = document.querySelector<HTMLInputElement>("#number");
+const button = document.querySelector("button");
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+async function getData<T>(url: string) {
+  const response = await fetch(url);
+  const json: T = await response.json();
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  return json;
+}
+
+function getCep() {
+  return cep?.value.replace("-", "");
+}
+
+interface IAddress {
+  cep: string;
+  logradouro: string;
+  localidade: string;
+  uf: string;
+}
+
+function viaCepData() {
+  if (cep) {
+    cep.addEventListener("blur", async () => {
+      const cepValue = getCep();
+      await getData<IAddress>(`https://viacep.com.br/ws/${cepValue}/json/`)
+        .then((value) => {
+          if (value.hasOwnProperty("erro")) {
+            throw new Error("CEP não encontrado.");
+          }
+
+          if (address && estate && city) {
+            address.value = value.logradouro;
+            estate.value = value.uf;
+            city.value = value.localidade;
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Erro ao buscar o CEP: " + error.message);
+        });
+    });
+  }
+}
+
+function formData() {
+  const nameValue = name?.value;
+  const emailValue = email?.value;
+  const birthdayValue = birthday?.value;
+  const cepValue = cep?.value;
+  const addressValue = address?.value;
+  const cityValue = city?.value;
+  const estateValue = estate?.value;
+  const numberValue = num?.value;
+
+  const obj = {
+    nameValue,
+    emailValue,
+    birthdayValue,
+    cepValue,
+    addressValue,
+    cityValue,
+    estateValue,
+    numberValue,
+  };
+  console.log(obj);
+}
+
+function init() {
+  viaCepData();
+  button?.addEventListener("click", formData);
+}
+
+init();
