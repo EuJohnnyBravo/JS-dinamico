@@ -16,7 +16,12 @@ async function getData<T>(url: string) {
 }
 
 function getCep() {
-  return cep?.value.replace("-", "");
+  const cepValue = cep?.value.replace(/\D/g, "");
+  if (cepValue?.length !== 8) {
+    alert("Cep invalido");
+    return;
+  }
+  return cepValue;
 }
 
 interface IAddress {
@@ -71,6 +76,15 @@ function formData() {
     numberValue,
   };
   console.log(obj);
+
+  name!.value = "";
+  email!.value = "";
+  birthday!.value = "";
+  cep!.value = "";
+  address!.value = "";
+  city!.value = "";
+  estate!.value = "";
+  num!.value = "";
 }
 
 function init() {
